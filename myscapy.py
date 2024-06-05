@@ -1,5 +1,11 @@
 from scapy.all import *
 
-sr1(IP(dst="1.1.1.1")/ICMP())
+sol = sr1(IP(dst="1.1.1.1")/UDP(sport = 53, dport=53)/DNS(qd=DNSQR(qname="twitter.com")))
+print(sol[DNS])
 
-# sr1(IP(dst="1.1.1.1")/UDP(dport=53)/DNS(rd=1,qd=DNSQR(qname="www.thepacketgeek.com")),verbose=0)
+# if answer:
+#     for packet in answer[0]:
+#         received = packet[1]
+#         if received.haslayer(DNS):
+#             print(received.getlayer(IP).dst)
+
